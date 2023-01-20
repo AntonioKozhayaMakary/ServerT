@@ -1,23 +1,27 @@
 const express = require('express')
 const {
-  createOrder
+  createOrder,
+  getOrder,
+  getOrders,
+  deleteOrder,
+  updateOrder
 } = require('../controllers/orderController')
 
 const router = express.Router()
 
-// GET all workouts
-//router.get('/', getProducts)
+// GET all Orders
+router.get('/', getOrders)
 
-// GET a single workout
-// router.get('/:id', getWorkout)
+// GET a single Order
+ router.get('/:id', getOrder)
 
-// POST a new workout
+// POST a new Order
 router.post('/', createOrder)
 
-// DELETE a workout
-//router.delete('/:id', deleteWorkout)
+// DELETE a Order
+router.delete('/:id', deleteOrder)
 
-// UPDATE a workout
-//router.patch('/:id', updateWorkout) 
+// UPDATE a Order
+router.patch('/:id', updateOrder) 
 
 module.exports = router

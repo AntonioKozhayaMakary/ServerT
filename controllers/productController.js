@@ -4,9 +4,9 @@ const mongoose = require('mongoose')
 // get all Product
 const getProducts = async (req, res) => {
   const products = await Product.find({}).sort({ createdAt: -1 })
-
   res.status(200).json(products)
 }
+
 // get a single Product
 const getProduct = async (req, res) => {
   const { id } = req.params
@@ -23,12 +23,12 @@ const getProduct = async (req, res) => {
 
   res.status(200).json(Product)
 }
-/* 
 
 
 
-// create a new workout
-const createWorkout = async (req, res) => {
+
+// create a new Product
+const createProduct = async (req, res) => {
   const { title, load, reps } = req.body
 
   let emptyFields = []
@@ -48,50 +48,53 @@ const createWorkout = async (req, res) => {
 
   // add to the database
   try {
-    const workout = await Workout.create({ title, load, reps })
-    res.status(200).json(workout)
+    const product = await Product.create({ title, load, reps })
+    res.status(200).json(product)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
 }
 
-// delete a workout
-const deleteWorkout = async (req, res) => {
+// delete a product
+const deleteProduct = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: 'No such workout' })
+    return res.status(400).json({ error: 'No such product' })
   }
 
-  const workout = await Workout.findOneAndDelete({ _id: id })
+  const product = await Product.findOneAndDelete({ _id: id })
 
-  if (!workout) {
-    return res.status(400).json({ error: 'No such workout' })
+  if (!product) {
+    return res.status(400).json({ error: 'No such product' })
   }
 
-  res.status(200).json(workout)
+  res.status(200).json(product)
 }
- */
-// update a workout
-/* const updateWorkout = async (req, res) => {
+
+// update a product
+const updateProduct = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({error: 'No such workout'})
+    return res.status(400).json({error: 'No such product'})
   }
 
-  const workout = await Workout.findOneAndUpdate({_id: id}, {
+  const product = await Product.findOneAndUpdate({_id: id}, {
     ...req.body
   })
 
-  if (!workout) {
-    return res.status(400).json({error: 'No such workout'})
+  if (!product) {
+    return res.status(400).json({error: 'No such product'})
   }
 
-  res.status(200).json(workout)
-} */
+  res.status(200).json(product)
+} 
 
 module.exports = {
   getProducts,
-  getProduct
+  getProduct,
+  updateProduct,
+  createProduct,
+  deleteProduct
 }

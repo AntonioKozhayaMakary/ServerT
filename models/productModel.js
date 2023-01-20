@@ -7,12 +7,7 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
-  ImgSrc: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  Descr: {
+  CategoryTitle: {
     type: String,
     required: true
   },

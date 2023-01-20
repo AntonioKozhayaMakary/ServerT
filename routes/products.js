@@ -1,7 +1,10 @@
 const express = require('express')
 const {
   getProducts,
-  getProduct
+  getProduct, 
+  createProduct,
+  deleteProduct, 
+  updateProduct
 } = require('../controllers/productController')
 
 const router = express.Router()
@@ -12,14 +15,13 @@ router.get('/', getProducts)
 // GET a single product
 router.get('/:id', getProduct)
 
- /*
-// POST a new workout
-router.post('/', createWorkout)
+// POST a new Product
+router.post('/', createProduct)
 
-// DELETE a workout
-router.delete('/:id', deleteWorkout)
+// DELETE a Product
+router.delete('/:id', deleteProduct)
 
-// UPDATE a workout
-//router.patch('/:id', updateWorkout) */
+// UPDATE a Product
+router.patch('/:id', updateProduct)
 
 module.exports = router
