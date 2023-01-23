@@ -16,16 +16,17 @@ const cors = require('cors');
 
 // express app
 const app = express()
-
+app.use(cors());
 // middleware
 app.use(express.json())
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next()
 })
 
-app.use(cors());
 
 // routes
 app.use('/api/products', productRoutes)
