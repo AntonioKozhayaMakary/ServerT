@@ -1,4 +1,4 @@
-const Customer = require('../models/C')
+const Customer = require('../models/customerModel')
 const mongoose = require('mongoose')
 
 // get all Customer
@@ -29,26 +29,12 @@ const getCustomer = async (req, res) => {
 
 // create a new Customer
 const createCustomer = async (req, res) => {
-  const { title, load, reps } = req.body
+  const { CustomerName ,CustomerPhoneNumber   } = req.body
 
-  let emptyFields = []
-
-  if (!title) {
-    emptyFields.push('title')
-  }
-  if (!load) {
-    emptyFields.push('load')
-  }
-  if (!reps) {
-    emptyFields.push('reps')
-  }
-  if (emptyFields.length > 0) {
-    return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
-  }
-
+  
   // add to the database
   try {
-    const customer = await Customer.create({ title, load, reps })
+    const customer = await Customer.create({ CustomerName ,CustomerPhoneNumber  })
     res.status(200).json(customer)
   } catch (error) {
     res.status(400).json({ error: error.message })

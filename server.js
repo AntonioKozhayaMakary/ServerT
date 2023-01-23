@@ -2,8 +2,14 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+
 const productRoutes = require('./routes/products')
 const orderRoutes = require('./routes/orders')
+const categoryRoutes = require('./routes/category')
+const tableRoutes = require('./routes/tables')
+const supplierRoutes = require('./routes/suppliers')
+const customerRoutes = require('./routes/customers')
+
 //const path = require('path');
 const cors = require('cors');
 
@@ -24,6 +30,10 @@ app.use(cors());
 // routes
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/categorys', categoryRoutes)
+app.use('/api/customers', customerRoutes)
+app.use('/api/tables', tableRoutes)
+app.use('/api/suppliers', supplierRoutes)
 
 
 //app.get('/', (req, res) => { res.send('Hello from Express!')});
@@ -31,7 +41,7 @@ app.use('/api/orders', orderRoutes)
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('connected to database')
+    console.log('connected to database !')
     // listen to port
     app.listen(process.env.PORT, () => {
       console.log('listening for requests on port', process.env.PORT)

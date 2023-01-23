@@ -7,7 +7,7 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
-  CategoryTitle: {
+  CategoryName: {
     type: String,
     required: true
   },
